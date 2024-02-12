@@ -1,4 +1,23 @@
-# code-with-quarkus
+# Vass Challenge
+
+Welcome to the implementation of the code challenge, this project has been implemented using an in:mem:H2 database only for developing purposes, the initial loading of the database is done within the code to have more control over the data that is been used.
+
+As an addition some other entities and relationships have been implemented for having a more "realistic" implementation of the app:
+
+ + In the [@PriceResource](/src/main/java/com/vass/api/PriceResource.java) you can find the rest controller implemented.
+ + In the [@PriceResourceTest](/src/test/java/com/vass/PriceResourceTest.java) you can find the required tests.
+
+## Curl requests for using the app
+
+### Return all the prices of the database 
+#### Example:
+curl -X GET "http://localhost:8080/api/prices"
+
+### Return all the price filtered by the brand, product and date selected (that comes from the user side in secondsEpoch!)
+#### Example:
+curl -X GET "http://localhost:8080/api/prices/filter?brandId=1&productId=1&dateEpoch=1592341200000"
+
+## Additional Quarkus Info
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
@@ -12,59 +31,3 @@ You can run your application in dev mode that enables live coding using:
 ```
 
 > **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
-
-## Packaging and running the application
-
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
-
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
-
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
-
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using: 
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/code-with-quarkus-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
-
-## Related Guides
-
-- Hibernate ORM ([guide](https://quarkus.io/guides/hibernate-orm)): Define your persistent model with Hibernate ORM and Jakarta Persistence
-- JDBC Driver - H2 ([guide](https://quarkus.io/guides/datasource)): Connect to the H2 database via JDBC
-- SmallRye OpenAPI ([guide](https://quarkus.io/guides/openapi-swaggerui)): Document your REST APIs with OpenAPI - comes with Swagger UI
-
-## Provided Code
-
-### Hibernate ORM
-
-Create your first JPA entity
-
-[Related guide section...](https://quarkus.io/guides/hibernate-orm)
-
-
-
-### RESTEasy Reactive
-
-Easily start your Reactive RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
